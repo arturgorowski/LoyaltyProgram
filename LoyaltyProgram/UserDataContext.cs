@@ -9,14 +9,13 @@ namespace LoyaltyProgram
 {
     public  class UserDataContext:DbContext
     {
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data source = database.db");
         }
 
-
         public DbSet<User>? Users { get; set; }
+        public DbSet<Transaction>? Transactions { get; set; }
 
     }
 }

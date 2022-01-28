@@ -41,6 +41,12 @@ namespace LoyaltyProgram.views
             var Username = UsernameText.Text;
             var Password = PasswordText.Password;
 
+            if (Username == "" || Password == "")
+            {
+                MessageBox.Show("Username and Password are required!");
+                return;
+            }
+
             using (UserDataContext context = new UserDataContext())
             {
                 bool userFound = context.Users.Any(user => user.Username == Username && user.Password == Password);
