@@ -1,0 +1,17 @@
+﻿<Window x:Class="LoyaltyProgram.views.UserLoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LoyaltyProgram.views"
+        mc:Ignorable="d"
+        Title="UserLoginWindow" Height="450" Width="450">
+    <Grid>
+        <Label Content="Login page" HorizontalAlignment="Center" Margin="0,90,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+        <Label Content="Username" HorizontalAlignment="Left" Margin="162,168,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="UsernameText" HorizontalAlignment="Center" Margin="0,194,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="166,222,0,0" VerticalAlignment="Top"/>
+        <Button Content="Login" HorizontalAlignment="Left" Margin="245,291,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <PasswordBox x:Name="PasswordText" HorizontalAlignment="Center" Margin="0,253,0,0" VerticalAlignment="Top" Width="120"/>
+    </Grid>
+</Window>

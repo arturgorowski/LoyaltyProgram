@@ -16,6 +16,7 @@ namespace LoyaltyProgram
             _connectionString = String.Format("Data Source={0}", _databaseLocation);
         }
 
+        /*
         public int addUser(User user)
         {
             using (var connection = new SqliteConnection(_connectionString))
@@ -173,5 +174,6 @@ namespace LoyaltyProgram
             }
             return user;
         }
+        */
     }
 }
