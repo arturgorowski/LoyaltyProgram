@@ -20,12 +20,10 @@ namespace LoyaltyProgram.views
     public partial class NewFlightForm : Window
     {
         private User user;
-        private UserDataContext userDataContext;
-        public NewFlightForm(User user, UserDataContext userDataContext)
+        public NewFlightForm(User user)
         {
             InitializeComponent();
             this.user = user;
-            this.userDataContext = userDataContext;
         }
 
         public void BackToUserWindow()

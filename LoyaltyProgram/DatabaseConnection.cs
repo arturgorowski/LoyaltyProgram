@@ -7,13 +7,11 @@ namespace LoyaltyProgram
 {
     public class DatabaseConnection
     {
-        string _connectionString;
+        //UserDataContext context;
 
         public DatabaseConnection()
         {
-            var _databaseLocation = "data.db";
-            _databaseLocation = File.Exists(_databaseLocation) ? _databaseLocation : String.Format("../../../{0}", _databaseLocation);
-            _connectionString = String.Format("Data Source={0}", _databaseLocation);
+            //context = new UserDataContext();
         }
 
         /*
