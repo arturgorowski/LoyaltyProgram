@@ -19,9 +19,44 @@ namespace LoyaltyProgram.views
     /// </summary>
     public partial class UserWindow : Window
     {
-        public UserWindow()
+        private User user;
+
+        public UserWindow(User user)
         {
             InitializeComponent();
+            this.user = user;
+            InitializeLoggedUsername(this.user);
+        }
+
+        public void LogoutUser()
+        {
+            UserLoginWindow userLoginWindow = new UserLoginWindow();
+            userLoginWindow.Show();
+            Close();
+        }
+
+        public void AddNewFlight()
+        {
+            NewFlightForm newFlightForm = new NewFlightForm(this.user);
+            newFlightForm.Show();
+            Close();
+        }
+
+        private void logoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            LogoutUser();
+        }
+
+
+        private void newFlightButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewFlight();
+        }
+
+        private void InitializeLoggedUsername(User user)
+        {
+            var currentUser = user.FirstName + " " + user.LastName;
+            LoggedUserTextBlock.Text = currentUser;
         }
     }
 }

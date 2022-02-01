@@ -24,9 +24,9 @@ namespace LoyaltyProgram.views
             InitializeComponent();
         }
 
-        public void GrantUserAccess()
+        public void GrantUserAccess(User user)
         {
-            UserWindow userWindow = new UserWindow();
+            UserWindow userWindow = new UserWindow(user);
             userWindow.Show();
         }
 
@@ -61,7 +61,7 @@ namespace LoyaltyProgram.views
                     }
                     else
                     {
-                        GrantUserAccess();
+                        GrantUserAccess(loggedUser);
                     }
                     Close();
                 }

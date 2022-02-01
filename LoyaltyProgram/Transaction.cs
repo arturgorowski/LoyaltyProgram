@@ -15,6 +15,7 @@ namespace LoyaltyProgram
         public string? DeparturePlace { get; set; }
         public string? ArrivalePlace { get; set; }
         public string? FlightNumber { get; set; }
+        public double? Price { get; set; }
         public bool? IsVerified { get; set; }
     }
 }

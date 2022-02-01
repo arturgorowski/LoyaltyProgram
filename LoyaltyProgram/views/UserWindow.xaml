@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="UserWindow" Height="450" Width="800">
     <Grid>
-        
+        <Button x:Name="logoutButton" Content="Logout" HorizontalAlignment="Left" Margin="727,10,0,0" VerticalAlignment="Top" Click="logoutButton_Click"/>
+        <Button x:Name="newFlightButton" Content="Add new flight" HorizontalAlignment="Left" Margin="631,10,0,0" VerticalAlignment="Top" Click="newFlightButton_Click"/>
+        <TextBlock x:Name="LoggedUserTextBlock" HorizontalAlignment="Left" Margin="530,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>
