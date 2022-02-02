@@ -56,6 +56,7 @@ namespace LoyaltyProgram.views
                 {
                     using (UserDataContext context = new UserDataContext())
                     {
+                        context.Users.Attach(this.user);
                         transaction.DeparturePlace = departurePlace;
                         transaction.ArrivalePlace = arrivalPlace;
                         transaction.FlightNumber = flightNumber;
