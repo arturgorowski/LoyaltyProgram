@@ -47,7 +47,15 @@ namespace LoyaltyProgram.views
 
         public void DeleteFlight()
         {
-            MessageBox.Show("Delete flight");
+            Transaction transaction = (Transaction)this.transactionsGrid.SelectedItem;
+            int transactionId = transaction.Id;
+            using (UserDataContext context = new UserDataContext())
+            {
+                Transaction transactionToDelete = context.Transactions.Single(transaction => transaction.Id == transactionId);
+                context.Remove(transactionToDelete);
+                context.SaveChanges();
+                FetchUserTransactions();
+            }
         }
 
         private void logoutButton_Click(object sender, RoutedEventArgs e)
