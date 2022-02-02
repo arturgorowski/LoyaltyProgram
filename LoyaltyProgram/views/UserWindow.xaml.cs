@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,12 +21,14 @@ namespace LoyaltyProgram.views
     public partial class UserWindow : Window
     {
         private User user;
+        private List<Transaction> userTransactions;
 
         public UserWindow(User user)
         {
             InitializeComponent();
             this.user = user;
-            InitializeLoggedUsername(this.user);
+            InitializeLoggedUsername();
+            FetchUserTransactions();
         }
 
         public void LogoutUser()
@@ -42,6 +45,11 @@ namespace LoyaltyProgram.views
             Close();
         }
 
+        public void DeleteFlight()
+        {
+            MessageBox.Show("Delete flight");
+        }
+
         private void logoutButton_Click(object sender, RoutedEventArgs e)
         {
             LogoutUser();
@@ -53,10 +61,54 @@ namespace LoyaltyProgram.views
             AddNewFlight();
         }
 
-        private void InitializeLoggedUsername(User user)
+        private void deleteFlightButton_Click(object sender, RoutedEventArgs e)
         {
-            var currentUser = user.FirstName + " " + user.LastName;
-            LoggedUserTextBlock.Text = currentUser;
+            DeleteFlight();
+        }
+
+        private void InitializeLoggedUsername()
+        {
+            var currentUser = this.user.FirstName + " " + this.user.LastName;
+            LoggedUserLabel.Content = "Hello " + currentUser;
+        }
+
+        private void FetchUserTransactions()
+        {
+            using (UserDataContext context = new UserDataContext())
+            {
+                bool transactionsFound = context.Transactions.Any();
+
+                if (transactionsFound)
+                {
+                    this.userTransactions = context.Transactions.Where(transaction => transaction.User == this.user).ToList();
+                    RefreshViewSource();
+
+                    
+                    //RefreshUserTransactions();
+                    RefreshPointsLabel();
+                }
+            }
+        }
+
+        private void RefreshPointsLabel()
+        {
+            var points = this.userTransactions
+                .Where(transaction => transaction.IsVerified == true)
+                .Sum(transaction => transaction.Price) / 10;
+            PointsLabel.Content = "You have " + points + " points";
+        }
+
+        private void transactionsGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            Transaction transaction = (Transaction)transactionsGrid.SelectedItem;
+            deleteFlightButton.IsEnabled = (bool)!transaction.IsVerified;
+        }
+
+        private void RefreshViewSource()
+        {
+            CollectionViewSource itemCollectionViewSource;
+            itemCollectionViewSource = (CollectionViewSource)(FindResource("ItemCollectionViewSource"));
+            itemCollectionViewSource.Source = this.userTransactions;
         }
     }
 }
