@@ -109,6 +109,7 @@ namespace LoyaltyProgram.views
         private void transactionsGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
             Transaction transaction = (Transaction)transactionsGrid.SelectedItem;
+            UpdateFlightDetails(transaction);
             deleteFlightButton.IsEnabled = (bool)!transaction.IsVerified;
         }
 
@@ -117,6 +118,16 @@ namespace LoyaltyProgram.views
             CollectionViewSource itemCollectionViewSource;
             itemCollectionViewSource = (CollectionViewSource)(FindResource("ItemCollectionViewSource"));
             itemCollectionViewSource.Source = this.userTransactions;
+        }
+
+        private void UpdateFlightDetails(Transaction transaction)
+        {
+            flightNumberLabel.Content = transaction.FlightNumber;
+            arrivalLabel.Content = transaction.ArrivalePlace;
+            departureLabel.Content = transaction.DeparturePlace;
+            pointsLabel.Content = transaction.Price / 10;
+            statusLabel.Content = (bool)transaction.IsVerified ? "Granted" : "Verification";
+            statusLabel.Foreground = (bool)transaction.IsVerified ? Brushes.Green: Brushes.Red;
         }
     }
 }
