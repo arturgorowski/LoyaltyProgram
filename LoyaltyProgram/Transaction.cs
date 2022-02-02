@@ -11,7 +11,7 @@ namespace LoyaltyProgram
     {
         [Key]
         public int Id { get; set; }
-        public User? User { get; set; }
+        public int UserId { get; set; }
         public string? DeparturePlace { get; set; }
         public string? ArrivalePlace { get; set; }
         public string? FlightNumber { get; set; }
