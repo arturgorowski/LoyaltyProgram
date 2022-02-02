@@ -56,12 +56,11 @@ namespace LoyaltyProgram.views
                 {
                     using (UserDataContext context = new UserDataContext())
                     {
-                        context.Users.Attach(this.user);
                         transaction.DeparturePlace = departurePlace;
                         transaction.ArrivalePlace = arrivalPlace;
                         transaction.FlightNumber = flightNumber;
                         transaction.Price = Double.Parse(price);
-                        transaction.User = this.user;
+                        transaction.UserId = this.user.Id;
                         transaction.IsVerified = false;
 
                         context.Add<Transaction>(transaction);

@@ -88,7 +88,7 @@ namespace LoyaltyProgram.views
 
                 if (transactionsFound)
                 {
-                    this.userTransactions = context.Transactions.Where(transaction => transaction.User == this.user).ToList();
+                    this.userTransactions = context.Transactions.Where(transaction => transaction.UserId == this.user.Id).ToList();
                     RefreshViewSource();
 
                     
