@@ -57,18 +57,16 @@
                 <Button Margin="10,0,0,0" x:Name="deleteFlightButton" Content="Delete flight" VerticalAlignment="Bottom" Click="deleteFlightButton_Click"/>
             </DockPanel>
         </Grid>
-        <StackPanel Grid.Row="1" Grid.Column="0" Margin="10, 50, 0, 0">
-            <Label Content="Your flights:" FontSize="20"></Label>
-            <DataGrid DataContext="{StaticResource ItemCollectionViewSource}" ItemsSource="{Binding}" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" 
-                      Margin="10, 0, 0, 0" Name="transactionsGrid" Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCellsChanged="transactionsGrid_SelectedCellsChanged" CanUserAddRows="False" >
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Flight Number" Binding="{Binding FlightNumber}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Departure" Binding="{Binding DeparturePlace}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Arrival" Binding="{Binding ArrivalePlace}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Price" Binding="{Binding Price}" IsReadOnly="True"/>
-                    <DataGridCheckBoxColumn Header="Staus" Binding="{Binding IsVerified}" IsReadOnly="True"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
+        <Label Grid.Row="1" Grid.Column="0" Content="Your flights:" FontSize="20" Margin="10, 50, 0, 0"></Label>
+        <DataGrid Grid.Row="1" Grid.Column="0" DataContext="{StaticResource ItemCollectionViewSource}" ItemsSource="{Binding}" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" 
+                      Margin="20, 90, 0, 0" Name="transactionsGrid" Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCellsChanged="transactionsGrid_SelectedCellsChanged" CanUserAddRows="False" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Flight Number" Binding="{Binding FlightNumber}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Departure" Binding="{Binding DeparturePlace}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Arrival" Binding="{Binding ArrivalePlace}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn Header="Staus" Binding="{Binding IsVerified}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
