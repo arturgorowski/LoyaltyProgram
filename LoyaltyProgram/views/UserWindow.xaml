@@ -9,7 +9,7 @@
     <Window.Resources>
         <CollectionViewSource x:Key="ItemCollectionViewSource" CollectionViewType="ListCollectionView"/>
     </Window.Resources>
-    <Grid Margin="10,0,10,10">
+    <Grid Margin="0,0,0,10">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
@@ -18,48 +18,69 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0">
-            <Label x:Name="LoggedUserLabel" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <Label Margin="0, 10, 0, 0" x:Name="PointsLabel" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF2980B9"/>
+                    <GradientStop Color="#FF6DD5FA" Offset="1"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
+            <Label x:Name="LoggedUserLabel" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15" Foreground="White"/>
+            <Label x:Name="PointsLabel" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15" Foreground="White"/>
         </StackPanel>
-        <Button Grid.Row="0" Grid.Column="1" x:Name="logoutButton" Content="Logout" HorizontalAlignment="Right" VerticalAlignment="Top" Click="logoutButton_Click"/>
+        <Button Grid.Row="0" Grid.Column="1" Margin="0,10,20,10" x:Name="logoutButton" Content="Logout" HorizontalAlignment="Right" VerticalAlignment="Center" Click="logoutButton_Click" FontSize="20" Width="100"/>
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0">
-                <Label Margin="0,50,0,20" Content="Flight Details" FontSize="20"/>
-                <DockPanel>
-                    <Label Content="Flight Number"></Label>
-                    <Label Name="flightNumberLabel"/>
-                </DockPanel>
-                <DockPanel>
-                    <Label Content="Departure"></Label>
-                    <Label Name="departureLabel"/>
-                </DockPanel>
-                <DockPanel>
-                    <Label Content="Arrival"></Label>
-                    <Label Name="arrivalLabel"/>
-                </DockPanel>
-                <DockPanel>
-                    <Label Content="Points"></Label>
-                    <Label Name="pointsLabel"/>
-                </DockPanel>
-                <DockPanel>
-                    <Label Content="Status"></Label>
-                    <Label Name="statusLabel"/>
-                </DockPanel>
-                
-            </StackPanel>
-            <DockPanel Grid.Row="1" HorizontalAlignment="Right">
-                <Button x:Name="newFlightButton" Content="Add new flight" VerticalAlignment="Bottom" Click="newFlightButton_Click"/>
-                <Button Margin="10,0,0,0" x:Name="deleteFlightButton" Content="Delete flight" VerticalAlignment="Bottom" Click="deleteFlightButton_Click"/>
-            </DockPanel>
+            <Border Grid.Row="0" Margin="20,20,20,20" Background="GhostWhite" BorderBrush="#FF2980B9" BorderThickness="2">
+                <StackPanel>
+                    <Label Margin="0,10,0,20" Content="Flight Details" FontSize="25"/>
+                    <DockPanel>
+                        <Label Content="Flight Number" FontSize="15"></Label>
+                        <Label Name="flightNumberLabel" FontSize="15"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <Label Content="Departure" FontSize="15"></Label>
+                        <Label Name="departureLabel" FontSize="15"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <Label Content="Arrival" FontSize="15"></Label>
+                        <Label Name="arrivalLabel" FontSize="15"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <Label Content="Points" FontSize="15"></Label>
+                        <Label Name="pointsLabel" FontSize="15"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <Label Content="Status" FontSize="15"></Label>
+                        <Label Name="statusLabel" FontSize="15"/>
+                    </DockPanel>
+                    <Button Margin="10,10,20,20" x:Name="deleteFlightButton" Content="Delete" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                            Click="deleteFlightButton_Click" FontSize="15" Width="100" Foreground="White">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFEA384D"/>
+                                <GradientStop Color="#FFD31027" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                </StackPanel>
+            </Border>
+            <Button Margin="0,0,0,10" Grid.Row="1" x:Name="newFlightButton" Content="Add new" VerticalAlignment="Bottom" Click="newFlightButton_Click" Width="150" FontSize="15" Foreground="AliceBlue">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF81C330"/>
+                        <GradientStop Color="#FF56AB2F" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+
         </Grid>
-        <Label Grid.Row="1" Grid.Column="0" Content="Your flights:" FontSize="20" Margin="10, 50, 0, 0"></Label>
+        <Label Grid.Row="1" Grid.Column="0" Content="Your flights" FontSize="25" Margin="10, 30, 0, 0"></Label>
         <DataGrid Grid.Row="1" Grid.Column="0" DataContext="{StaticResource ItemCollectionViewSource}" ItemsSource="{Binding}" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" 
-                      Margin="20, 90, 0, 0" Name="transactionsGrid" Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCellsChanged="transactionsGrid_SelectedCellsChanged" CanUserAddRows="False" >
+                      Margin="20, 80, 0, 0" Name="transactionsGrid" Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCellsChanged="transactionsGrid_SelectedCellsChanged" CanUserAddRows="False" FontSize="15" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Flight Number" Binding="{Binding FlightNumber}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Departure" Binding="{Binding DeparturePlace}" IsReadOnly="True"/>
