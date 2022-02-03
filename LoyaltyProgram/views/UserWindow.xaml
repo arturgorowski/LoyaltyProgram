@@ -59,7 +59,7 @@
         </Grid>
         <StackPanel Grid.Row="1" Grid.Column="0" Margin="10, 50, 0, 0">
             <Label Content="Your flights:" FontSize="20"></Label>
-            <DataGrid DataContext="{StaticResource ItemCollectionViewSource}" ItemsSource="{Binding}" AutoGenerateColumns="False" 
+            <DataGrid DataContext="{StaticResource ItemCollectionViewSource}" ItemsSource="{Binding}" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" 
                       Margin="10, 0, 0, 0" Name="transactionsGrid" Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCellsChanged="transactionsGrid_SelectedCellsChanged" CanUserAddRows="False" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Flight Number" Binding="{Binding FlightNumber}" IsReadOnly="True"/>
