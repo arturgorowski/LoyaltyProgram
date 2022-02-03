@@ -30,9 +30,9 @@ namespace LoyaltyProgram.views
             userWindow.Show();
         }
 
-        public void GrantAdminAccess()
+        public void GrantAdminAccess(User user)
         {
-            AdminWindow adminWindow = new AdminWindow();
+            AdminWindow adminWindow = new AdminWindow(user);
             adminWindow.Show();
         }
 
@@ -57,7 +57,7 @@ namespace LoyaltyProgram.views
 
                     if (loggedUser.Role == "admin")
                     {
-                        GrantAdminAccess();
+                        GrantAdminAccess(loggedUser);
                     }
                     else
                     {
