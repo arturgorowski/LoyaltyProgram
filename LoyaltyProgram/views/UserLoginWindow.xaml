@@ -6,12 +6,30 @@
         xmlns:local="clr-namespace:LoyaltyProgram.views"
         mc:Ignorable="d"
         Title="UserLoginWindow" Height="450" Width="450">
-    <Grid>
-        <Label Content="Login page" HorizontalAlignment="Center" Margin="0,90,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
-        <Label Content="Username" HorizontalAlignment="Left" Margin="162,168,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="UsernameText" HorizontalAlignment="Center" Margin="0,194,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="166,222,0,0" VerticalAlignment="Top"/>
-        <Button Content="Login" HorizontalAlignment="Left" Margin="245,291,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-        <PasswordBox x:Name="PasswordText" HorizontalAlignment="Center" Margin="0,253,0,0" VerticalAlignment="Top" Width="120"/>
+    <Grid Margin="0,0,0,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0">
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF2980B9"/>
+                    <GradientStop Color="#FF6DD5FA" Offset="1"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
+            <Label Content="Airplane" HorizontalAlignment="Center" Margin="0,0,50,0" VerticalAlignment="Top" FontSize="30" FontWeight="Light" FontStyle="Italic" Foreground="White"/>
+            <Label Content="Loyalty" HorizontalAlignment="Center" Margin="50,0,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Light" FontStyle="Italic" Foreground="White"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0,50,0,0">
+            <Label Content="Username" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
+            <TextBox x:Name="UsernameText" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" FontSize="20"/>
+            <Label Margin="0,10,0,0" Content="Password" HorizontalAlignment="Center"  VerticalAlignment="Top" FontSize="20"/>
+            <PasswordBox x:Name="PasswordText" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="200" FontSize="20"/>
+            <Button Margin="0,30,0,0" Content="Login" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_Click" Width="150" FontSize="20"/>
+        </StackPanel>
     </Grid>
 </Window>
