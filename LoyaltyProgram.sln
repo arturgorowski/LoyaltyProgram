@@ -10,6 +10,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppiumIntegrationTests", "A
 		{5B1E0E4A-642C-4213-93DF-48BDEB69B9EA} = {5B1E0E4A-642C-4213-93DF-48BDEB69B9EA}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{A35EB35C-777A-43E6-8F83-C963EAA3ABBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 		{2B2E9619-2F1D-433A-A6B7-96EF6DC3A67E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B2E9619-2F1D-433A-A6B7-96EF6DC3A67E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B2E9619-2F1D-433A-A6B7-96EF6DC3A67E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A35EB35C-777A-43E6-8F83-C963EAA3ABBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A35EB35C-777A-43E6-8F83-C963EAA3ABBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A35EB35C-777A-43E6-8F83-C963EAA3ABBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A35EB35C-777A-43E6-8F83-C963EAA3ABBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

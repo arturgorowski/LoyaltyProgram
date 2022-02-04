@@ -9,9 +9,20 @@ namespace LoyaltyProgram
 {
     public  class UserTransactionDataContext:DbContext
     {
+        public UserTransactionDataContext()
+        {
+        }
+
+        public UserTransactionDataContext(DbContextOptions<UserTransactionDataContext> options) : base(options)
+        {
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data source = database.db");
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlite("Data source = database.db");
+            }
         }
 
         public DbSet<User>? Users { get; set; }
