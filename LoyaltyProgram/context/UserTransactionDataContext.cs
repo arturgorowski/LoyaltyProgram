@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LoyaltyProgram
 {
-    public  class UserDataContext:DbContext
+    public  class UserTransactionDataContext:DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
