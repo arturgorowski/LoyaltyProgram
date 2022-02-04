@@ -51,7 +51,7 @@ namespace LoyaltyProgram.views
         public void DeleteFlight()
         {
             Transaction transaction = (Transaction)this.transactionsGrid.SelectedItem;
-            userTransactionService.deleteTransaction(this.userTransactions, transaction);
+            userTransactionService.DeleteTransaction(this.userTransactions, transaction);
             FetchUserTransactions();
         }
 
@@ -79,7 +79,7 @@ namespace LoyaltyProgram.views
 
         private void FetchUserTransactions()
         {
-            this.userTransactions = userTransactionService.getUserTransactions(this.user);
+            this.userTransactions = userTransactionService.GetUserTransactions(this.user);
             RefreshViewSource();
             RefreshPointsLabel();
         }

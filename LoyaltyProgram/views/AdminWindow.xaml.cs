@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LoyaltyProgram.service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,13 +22,13 @@ namespace LoyaltyProgram.views
     {
         private User user;
         private List<Transaction> pendingTransactions;
-        private UserTransactionDataContext context;
+        private PendingTransactionService pendingTransactionService;
 
         public AdminWindow(User user)
         {
             InitializeComponent();
             this.user = user;
-            this.context = new UserTransactionDataContext();
+            this.pendingTransactionService = new PendingTransactionService();
             InitializeLoggedUsername();
             FetchPendingTransactions();
         }
@@ -42,10 +43,7 @@ namespace LoyaltyProgram.views
         public void Approve()
         {
             Transaction transaction = (Transaction)this.pendingTransactionsGrid.SelectedItem;
-            int transactionId = transaction.Id;
-            Transaction transactionToApprove = this.context.Transactions.Single(transaction => transaction.Id == transactionId);
-            transactionToApprove.IsVerified = true;
-            this.context.SaveChanges();
+            pendingTransactionService.ApproveTransaction(transaction);
             FetchPendingTransactions();
             UpdateSelectedRow();
         }
@@ -53,10 +51,7 @@ namespace LoyaltyProgram.views
         public void Discard()
         {
             Transaction transaction = (Transaction)this.pendingTransactionsGrid.SelectedItem;
-            int transactionId = transaction.Id;
-            Transaction transactionToDelete = this.context.Transactions.Single(transaction => transaction.Id == transactionId);
-            this.context.Remove(transactionToDelete);
-            this.context.SaveChanges();
+            pendingTransactionService.DiscardTransaction(transaction);
             FetchPendingTransactions();
             UpdateSelectedRow();
         }
@@ -85,12 +80,8 @@ namespace LoyaltyProgram.views
 
         private void FetchPendingTransactions()
         {
-            bool transactionsFound = this.context.Transactions.Any();
-            if (transactionsFound)
-            {
-                this.pendingTransactions = context.Transactions.Where(transaction => transaction.IsVerified == false).ToList();
-                RefreshViewSource();
-            } 
+            this.pendingTransactions = this.pendingTransactionService.GetPendingTransactions();
+            RefreshViewSource();
         }
 
         private void pendingTransactionsGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
