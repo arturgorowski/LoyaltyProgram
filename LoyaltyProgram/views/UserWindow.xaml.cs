@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LoyaltyProgram.service;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -22,11 +23,13 @@ namespace LoyaltyProgram.views
     {
         private User user;
         private List<Transaction> userTransactions;
+        private UserTransactionService userTransactionService;
 
         public UserWindow(User user)
         {
             InitializeComponent();
             this.user = user;
+            this.userTransactionService = new UserTransactionService();
             InitializeLoggedUsername();
             FetchUserTransactions();
         }
@@ -48,14 +51,8 @@ namespace LoyaltyProgram.views
         public void DeleteFlight()
         {
             Transaction transaction = (Transaction)this.transactionsGrid.SelectedItem;
-            int transactionId = transaction.Id;
-            using (UserTransactionDataContext context = new UserTransactionDataContext())
-            {
-                Transaction transactionToDelete = context.Transactions.Single(transaction => transaction.Id == transactionId);
-                context.Remove(transactionToDelete);
-                context.SaveChanges();
-                FetchUserTransactions();
-            }
+            userTransactionService.DeleteTransaction(this.userTransactions, transaction);
+            FetchUserTransactions();
         }
 
         private void logoutButton_Click(object sender, RoutedEventArgs e)
@@ -75,34 +72,21 @@ namespace LoyaltyProgram.views
         }
 
         private void InitializeLoggedUsername()
-        {
+        {   
             var currentUser = this.user.FirstName + " " + this.user.LastName;
             LoggedUserLabel.Content = "Hello " + currentUser;
         }
 
         private void FetchUserTransactions()
         {
-            using (UserTransactionDataContext context = new UserTransactionDataContext())
-            {
-                bool transactionsFound = context.Transactions.Any();
-
-                if (transactionsFound)
-                {
-                    this.userTransactions = context.Transactions.Where(transaction => transaction.UserId == this.user.Id).ToList();
-                    RefreshViewSource();
-
-                    
-                    //RefreshUserTransactions();
-                    RefreshPointsLabel();
-                }
-            }
+            this.userTransactions = userTransactionService.GetUserTransactions(this.user);
+            RefreshViewSource();
+            RefreshPointsLabel();
         }
 
         private void RefreshPointsLabel()
         {
-            var points = this.userTransactions
-                .Where(transaction => transaction.IsVerified == true)
-                .Sum(transaction => transaction.Price) / 10;
+            double points = this.userTransactionService.CountPoints(this.userTransactions);
             PointsLabel.Content = "You have " + points + " points";
         }
 

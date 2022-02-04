@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LoyaltyProgram.service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace LoyaltyProgram.views
     public partial class NewFlightForm : Window
     {
         private User user;
+        private NewFlightService newFlightService;
         public NewFlightForm(User user)
         {
             InitializeComponent();
+            this.newFlightService = new NewFlightService();
             this.user = user;
         }
 
@@ -35,39 +38,25 @@ namespace LoyaltyProgram.views
 
         private void AddToVerify_Click(object sender, RoutedEventArgs e)
         {
-            Transaction transaction = new Transaction();
-
             var departurePlace = DeparturePlaceTextBox.Text;
             var arrivalPlace = ArrivalPlaceTextBox.Text;
             var flightNumber = FlightNumberTextBox.Text;
             var price = PriceTextBox.Text;
 
-            if (departurePlace == "" || arrivalPlace == "" || flightNumber == "" || price == "")
+            if (!newFlightService.ValidateFields(departurePlace, arrivalPlace, flightNumber, price))
             {
                 MessageBox.Show("All fields are required!");
             } 
             else
             {
-                if (price != "" && !double.TryParse(price, out _))
+                if (!newFlightService.ValidatePrice(price))
                 {
                     MessageBox.Show("The price is in the wrong format!");
                 } 
                 else
                 {
-                    using (UserTransactionDataContext context = new UserTransactionDataContext())
-                    {
-                        transaction.DeparturePlace = departurePlace;
-                        transaction.ArrivalePlace = arrivalPlace;
-                        transaction.FlightNumber = flightNumber;
-                        transaction.Price = Double.Parse(price);
-                        transaction.UserId = this.user.Id;
-                        transaction.IsVerified = false;
-
-                        context.Add<Transaction>(transaction);
-                        context.SaveChanges();
-
-                        BackToUserWindow();
-                    }
+                    newFlightService.AddNewTransaction(this.user.Id, departurePlace, arrivalPlace, flightNumber, price);
+                    BackToUserWindow();
                 }
             }
         }
