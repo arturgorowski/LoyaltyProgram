@@ -4,6 +4,82 @@
              xmlns:local="clr-namespace:LoyaltyProgram"
              StartupUri="views/UserLoginWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="positiveButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="100" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Foreground" Value="AliceBlue" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF81C330"/>
+                        <GradientStop Color="#FF56AB2F" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="negativeButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="100" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Foreground" Value="AliceBlue" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFEA384D"/>
+                        <GradientStop Color="#FFD31027" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="loginButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="150" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Foreground" Value="AliceBlue" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#36D1DC"/>
+                        <GradientStop Color="#5B86E5" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="logoutButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="100" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#ECE9E6"/>
+                        <GradientStop Color="#FFFFFF" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="borderStyle" TargetType="{x:Type Border}">
+            <Setter Property="Margin" Value="20,20,20,20"/>
+            <Setter Property="Background" Value="GhostWhite"/>
+            <Setter Property="BorderBrush" Value="#FF2980B9"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+        <Style x:Key="stackPanelStyle" TargetType="{x:Type StackPanel}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF2980B9"/>
+                        <GradientStop Color="#FF6DD5FA" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="dataGridStyle" TargetType="{x:Type DataGrid}">
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Margin" Value="20,80,0,0"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
     </Application.Resources>
 </Application>

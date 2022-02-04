@@ -18,18 +18,12 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-            <StackPanel.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF2980B9"/>
-                    <GradientStop Color="#FF6DD5FA" Offset="1"/>
-                </LinearGradientBrush>
-            </StackPanel.Background>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource stackPanelStyle}">
             <Label x:Name="LoggedUserLabel" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15" Foreground="White"/>
             <Label Content="Here you can verify pending requests" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="15" Foreground="White"/>
         </StackPanel>
-        <Button Grid.Row="0" Grid.Column="1" Margin="0,10,20,10" x:Name="logoutButton" Content="Logout" HorizontalAlignment="Right" VerticalAlignment="Center" Click="logoutButton_Click" FontSize="20" Width="100"/>
-        <Border Grid.Row="1" Grid.Column="1"  Margin="20,20,20,20" Background="GhostWhite" BorderBrush="#FF2980B9" BorderThickness="2">
+        <Button Grid.Row="0" Grid.Column="1" Margin="0,10,20,10" x:Name="logoutButton" Style="{StaticResource logoutButtonStyle}" Content="Logout" HorizontalAlignment="Right" VerticalAlignment="Center" Click="logoutButton_Click"/>
+        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource borderStyle}">
             <StackPanel>
                 <Label Margin="0,10,0,20" Content="Flight Details" FontSize="25"/>
                 <DockPanel>
@@ -53,29 +47,14 @@
                     <Label Name="pointsLabel" FontSize="15"/>
                 </DockPanel>
                 <DockPanel Margin="30,30,30,10">
-                    <Button x:Name="approveButton" Content="Approve" VerticalAlignment="Bottom" Click="approveButton_Click" Width="100" FontSize="15" Foreground="AliceBlue">
-                        <Button.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FF81C330"/>
-                                <GradientStop Color="#FF56AB2F" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>
-                    <Button x:Name="discardButton" Content="Discard" HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                            Click="discardButton_Click" FontSize="15" Width="100" Foreground="White">
-                        <Button.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FFEA384D"/>
-                                <GradientStop Color="#FFD31027" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>
+                    <Button x:Name="approveButton" Style="{StaticResource positiveButtonStyle}" Content="Approve" VerticalAlignment="Bottom" Click="approveButton_Click" IsEnabled="False" />
+                    <Button x:Name="discardButton" Style="{StaticResource negativeButtonStyle}" Content="Discard" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="discardButton_Click" IsEnabled="False" />
                 </DockPanel>
             </StackPanel>
         </Border>
         <Label Grid.Row="1" Grid.Column="0" Content="Pending requests" FontSize="25" Margin="10, 30, 0, 0"></Label>
-        <DataGrid Grid.Row="1" Grid.Column="0" DataContext="{StaticResource ItemCollectionViewSource}" ItemsSource="{Binding}" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" 
-                      Margin="20, 80, 0, 0" Name="pendingTransactionsGrid" Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCellsChanged="pendingTransactionsGrid_SelectedCellsChanged" CanUserAddRows="False" FontSize="15" >
+        <DataGrid Grid.Row="1" Grid.Column="0" DataContext="{StaticResource ItemCollectionViewSource}" ItemsSource="{Binding}" Style="{StaticResource dataGridStyle}"  
+                      Name="pendingTransactionsGrid" Grid.RowSpan="2" Grid.ColumnSpan="2" SelectedCellsChanged="pendingTransactionsGrid_SelectedCellsChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Client Id" Binding="{Binding UserId}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Flight Number" Binding="{Binding FlightNumber}" IsReadOnly="True"/>

@@ -14,13 +14,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0">
-            <StackPanel.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF2980B9"/>
-                    <GradientStop Color="#FF6DD5FA" Offset="1"/>
-                </LinearGradientBrush>
-            </StackPanel.Background>
+        <StackPanel Grid.Row="0" Style="{StaticResource stackPanelStyle}">
             <Label Content="Adding new flight" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Light" Foreground="White"/>
         </StackPanel>
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0,30,0,0">
@@ -32,14 +26,7 @@
             <TextBox x:Name="FlightNumberTextBox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" FontSize="15"/>
             <Label Margin="0,10,0,0" Content="Price" HorizontalAlignment="Center"  VerticalAlignment="Top" FontSize="15"/>
             <TextBox x:Name="PriceTextBox" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" FontSize="15"/>
-            <Button Margin="0,30,0,0" Content="Verify" HorizontalAlignment="Center" VerticalAlignment="Top" Click="AddToVerify_Click" Width="150" FontSize="20" Foreground="White">
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF81C330"/>
-                        <GradientStop Color="#FF56AB2F" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-            </Button>
+            <Button Margin="0,30,0,0" Content="Verify" Style="{StaticResource loginButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Click="AddToVerify_Click" Width="150" FontSize="20"/>
         </StackPanel>
     </Grid>
 </Window>
