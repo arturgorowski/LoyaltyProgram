@@ -17,7 +17,7 @@ namespace LoyaltyProgram
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            DatabaseFacade facade = new DatabaseFacade(new UserDataContext());
+            DatabaseFacade facade = new DatabaseFacade(new UserTransactionDataContext());
             facade.EnsureCreated();
         }
 

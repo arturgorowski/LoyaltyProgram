@@ -54,7 +54,7 @@ namespace LoyaltyProgram.views
                 } 
                 else
                 {
-                    using (UserDataContext context = new UserDataContext())
+                    using (UserTransactionDataContext context = new UserTransactionDataContext())
                     {
                         transaction.DeparturePlace = departurePlace;
                         transaction.ArrivalePlace = arrivalPlace;

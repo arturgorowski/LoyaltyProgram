@@ -21,13 +21,13 @@ namespace LoyaltyProgram.views
     {
         private User user;
         private List<Transaction> pendingTransactions;
-        private UserDataContext context;
+        private UserTransactionDataContext context;
 
         public AdminWindow(User user)
         {
             InitializeComponent();
             this.user = user;
-            this.context = new UserDataContext();
+            this.context = new UserTransactionDataContext();
             InitializeLoggedUsername();
             FetchPendingTransactions();
         }

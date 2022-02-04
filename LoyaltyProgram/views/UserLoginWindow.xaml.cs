@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LoyaltyProgram.service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,12 @@ namespace LoyaltyProgram.views
     /// </summary>
     public partial class UserLoginWindow : Window
     {
+
+        private UserLoginService userLoginService;
         public UserLoginWindow()
         {
             InitializeComponent();
+            userLoginService = new UserLoginService();
         }
 
         public void GrantUserAccess(User user)
@@ -38,38 +42,29 @@ namespace LoyaltyProgram.views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var Username = UsernameText.Text;
-            var Password = PasswordText.Password;
+            var username = UsernameText.Text;
+            var password = PasswordText.Password;
 
-            if (Username == "" || Password == "")
+            if (!userLoginService.ValidateFields(username, password))
             {
                 MessageBox.Show("Username and Password are required!");
                 return;
             }
 
-            using (UserDataContext context = new UserDataContext())
+            User user = userLoginService.GetUser(username, password);
+            if (user == null)
             {
-                bool userFound = context.Users.Any(user => user.Username == Username && user.Password == Password);
-
-                if (userFound)
-                {
-                    User loggedUser = context.Users.FirstOrDefault(user => user.Username == Username);
-
-                    if (loggedUser.Role == "admin")
-                    {
-                        GrantAdminAccess(loggedUser);
-                    }
-                    else
-                    {
-                        GrantUserAccess(loggedUser);
-                    }
-                    Close();
-                }
-                else
-                {
-                    MessageBox.Show("User Not Found!");
-                }
+                MessageBox.Show("User not found");
+            } 
+            else if (user.Role.Equals("admin"))
+            {
+                GrantAdminAccess(user);
+            } 
+            else
+            {
+                GrantUserAccess(user);
             }
+            Close();
         }
     }
 }

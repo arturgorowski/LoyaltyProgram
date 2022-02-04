@@ -49,7 +49,7 @@ namespace LoyaltyProgram.views
         {
             Transaction transaction = (Transaction)this.transactionsGrid.SelectedItem;
             int transactionId = transaction.Id;
-            using (UserDataContext context = new UserDataContext())
+            using (UserTransactionDataContext context = new UserTransactionDataContext())
             {
                 Transaction transactionToDelete = context.Transactions.Single(transaction => transaction.Id == transactionId);
                 context.Remove(transactionToDelete);
@@ -82,7 +82,7 @@ namespace LoyaltyProgram.views
 
         private void FetchUserTransactions()
         {
-            using (UserDataContext context = new UserDataContext())
+            using (UserTransactionDataContext context = new UserTransactionDataContext())
             {
                 bool transactionsFound = context.Transactions.Any();
 
