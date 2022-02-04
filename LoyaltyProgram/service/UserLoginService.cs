@@ -12,7 +12,6 @@ namespace LoyaltyProgram.service
             this.context = new UserTransactionDataContext();
         }
 
-
         public bool ValidateFields(string username, string password)
         {
             return (username != "" && password != "");
