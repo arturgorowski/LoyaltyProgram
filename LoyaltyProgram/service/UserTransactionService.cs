@@ -15,7 +15,7 @@ namespace LoyaltyProgram.service
             context = new UserTransactionDataContext();
         }
 
-        public void deleteTransaction(List<Transaction> userTransactions, Transaction transaction)
+        public void DeleteTransaction(List<Transaction> userTransactions, Transaction transaction)
         {
             int transactionId = transaction.Id;
             Transaction transactionToDelete = this.context.Transactions.Single(transaction => transaction.Id == transactionId);
@@ -23,7 +23,7 @@ namespace LoyaltyProgram.service
             context.SaveChanges();
         }
 
-        public List<Transaction> getUserTransactions(User user)
+        public List<Transaction> GetUserTransactions(User user)
         {
             List<Transaction> userTransactions = new List<Transaction>();
             bool transactionsFound = context.Transactions.Any();
